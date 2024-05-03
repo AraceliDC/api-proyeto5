@@ -31,9 +31,9 @@ const signUp = async(req,res) => {
 
 const login = async (req,res) => {
     try {
-        const { firstname, password } = req.body;
+        const { email, password } = req.body;
 
-        const user = await User.findOne({ firstname })
+        const user = await User.findOne({ email })
 
         const correctPassword = user === null ? false : await bcrypt.compare(password, user.password)
 
