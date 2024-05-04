@@ -19,6 +19,47 @@ const createPost = async (req, res) => {
   }
 };
 
+const updatePost = async (req, res) => {
+  try {
+    
+    const newPost = req.body
+
+        const response = await Post.findByIdAndUpdate(
+            newPost.id,
+            { $set: newPost },
+            { new: true }
+        )
+
+        if(response){
+            return res.json({
+                message: 'Producto actualizado correctamente',
+                detail: response
+            })
+        }
+  } catch (error) {
+    return res.json({
+      message: "Error",
+      detail: error.message,
+    });
+  }
+}
+
+const deletePost = async (req, res) => {
+  try {
+      const response = await Post.findByIdAndDelete(req.body.postId)
+      if (response){
+          return res.json({
+              message: 'Producto eliminado exitosamente'
+          })
+      }
+  } catch (error) {
+      return res.json({
+          message: 'Error',
+          detail: error.message
+      })
+  }
+}
+
 
 const getAllPosts = async (req, res) => {
   try {
@@ -39,5 +80,7 @@ const getAllPosts = async (req, res) => {
 
 module.exports = {
   createPost,
-  getAllPosts,
+  updatePost,
+  deletePost,
+  getAllPosts
 };
