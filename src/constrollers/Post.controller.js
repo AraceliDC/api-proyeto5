@@ -60,10 +60,26 @@ const deletePost = async (req, res) => {
   }
 }
 
+const getPostById = async (req, res) => {
+  const { _id } = req.params
+  try {
+
+    const shirt = await await Post.findById(_id)
+    return res.json({
+      detail: shirt
+    })
+    
+  } catch (error) {
+    return res.json({
+      message: 'Error',
+      detail: error.message
+  })
+  }
+}
 
 const getAllPosts = async (req, res) => {
   try {
-    const response = await Post.find().populate("category").populate("user");
+    const response = await Post.find().populate("category");//.populate("user")
     if (response) {
       return res.json({
         message: "Post list",
@@ -82,5 +98,6 @@ module.exports = {
   createPost,
   updatePost,
   deletePost,
+  getPostById,
   getAllPosts
 };
