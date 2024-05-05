@@ -4,7 +4,7 @@ const { getAllUsers, signUp, login, updateUser, deleteUser } = require('../const
 const router = express.Router();
 
 
-router.get('/', auth, getAllUsers);
+router.get('/', getAllUsers);
 router.post('/signup', signUp);
 router.post('/login', login);
 router.put('/', auth, updateUser);
