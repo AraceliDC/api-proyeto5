@@ -17,12 +17,6 @@ app.use(express.json())
 
 app.use('/v1', routes)
 
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
-    next();
-  });
-  
-
 app.get('/', (req, res) => {
     res.send("home")
 })
