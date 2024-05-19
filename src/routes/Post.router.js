@@ -9,4 +9,5 @@ router.delete('/', auth, deletePost)
 router.get('/', getAllPosts);
 router.get('/obtener-polera/:_id')
 
+
 module.exports = router
