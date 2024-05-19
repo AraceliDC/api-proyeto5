@@ -1,6 +1,8 @@
+const app = require('express')
 const User = require('../models/User.model')
+const auth = require('../middlewares/auth')
 
-const verifyUser = async(req, res) =>{
+app.get('verificar-usuario', auth, async(req, res) =>{
     try {
         const user = await User.findById(req.user.id).select('password')
         return res.json({ user })
@@ -9,6 +11,5 @@ const verifyUser = async(req, res) =>{
             message: 'Error'
         })
     }
-}
+})
 
-module.exports = verifyUser
